@@ -26,7 +26,7 @@ public class IterateListLambda {
         List<String> result = new ArrayList<>();
         Consumer<String> printInputListConsumer = System.out::println;
         Consumer<String> addToResultListConsumer = result :: add; //Consumer<String> addToResultListConsumer = s -> result.add(s);
-        input.forEach(printInputListConsumer.andThen(addToResultListConsumer));
+        input.stream().forEach(printInputListConsumer.andThen(addToResultListConsumer));
         System.out.println(result);
     }
 }
