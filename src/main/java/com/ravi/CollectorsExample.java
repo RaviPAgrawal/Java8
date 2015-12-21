@@ -1,10 +1,8 @@
 package com.ravi;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -28,10 +26,35 @@ public class CollectorsExample {
                     }
             ).forEach(System.out::println);
 
-            Stream<Employee> stream1 = employees.stream();
-            Optional<Employee> employeeOptional = stream1.filter(e -> e.getId() > 3)
+            Optional<Employee> employeeOptional = employees.stream().filter(e -> e.getId() > 3)
                     .min(Comparator.comparing(Employee::getId));
             System.out.println(employeeOptional);
+
+            Optional<Employee> employeeOptional2 = employees.stream().max(Comparator.comparing(Employee::getId));
+            System.out.println(employeeOptional2);
+
+            Map<Integer, List<Employee>> collect1 = employees.stream()
+                    .collect(Collectors.groupingBy(Employee::getId));
+            System.out.println(collect1);
+
+            Map<Integer, Long> collect2 = employees.stream()
+                    .collect(Collectors.groupingBy(
+                            Employee::getId,
+                            Collectors.counting()
+                        )
+                    );
+            System.out.println(collect2);
+
+            Map<Integer, List<String>> collect3 = employees.stream()
+                    .collect(Collectors.groupingBy(
+                                    Employee::getId,
+                                    Collectors.mapping(
+                                            Employee::getName,
+                                            Collectors.toList()
+                                    )
+                            )
+                    );
+            System.out.println(collect3);
 
         } catch (IOException e) {
             e.printStackTrace();

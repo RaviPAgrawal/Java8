@@ -1,10 +1,10 @@
 Ravi 1
-Farhan 2
+Farhan 1
 Ajeet 3
 Pravin 4
-Garvit 5
+Garvit 6
 Amit 6
-Sridatta 7
+Sridatta 8
 Gautam 8
 Vaibhav 9
 Mamuni 10
